@@ -1,4 +1,4 @@
-from utils import cliente
+from utils import cliente,conta
 
 while True:
     print("=================MENU==================")
@@ -8,35 +8,21 @@ while True:
 2- BUSCAR USUARIO
 3- ATUALIZAR USUARIO
 4- EXCLUIR USUARIO
-5- SAIR 
+5- CAIXA ELETRONICO
+6- SAIR 
 digite a sua opção aqui:""")
     
     if opcao == '1':
-        cliente.cadastro ( )
+        cliente.cadastro( )
     elif opcao == '2':
         cliente.buscar_user( )
     elif opcao == '3':
-        # atualizar ( )
-        cliente
+        cliente.atualizar( )
     elif opcao == '4':
-        # excluir ( )
-        cliente
-    elif opcao == '5':
+        conta.excluir( )
+    elif opcao == '6':
         print ('Encerrando  a sessão. . .'.upper())
         break
     else:
         print ("Opção inválida, por favor tente novamente".upper())
     print ('Sessão encerrada.'.upper())
-        
-        # match opcao:
-            
-        #     case 2:
-                # user_name=input("digite seu nome:")
-                # user_cpf=input("digite seu cpf (ex:000.000.000-00):")
-                # for cliente.usuario in cliente.usarios:
-                #     if cliente.usuario["cpf"]==user_cpf:
-                #         print(cliente.buscar_user(user_name,user_cpf))
-
-        # if opcao==3:
-        #     break
-    
