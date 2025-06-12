@@ -13,15 +13,15 @@ while True:
 digite a sua opção aqui:""")
     
     if opcao == '1':
-        cliente.cadastro( )
+        cliente.cadastro
     elif opcao == '2':
-        cliente.buscar_user( )
+        cliente.buscar_user
     elif opcao == '3':
-        cliente.atualizar( )
+        cliente.atualizar
     elif opcao == '4':
-        conta.excluir( )
+        conta.excluir
     elif opcao == '5':
-        while True:  # loop infinito ate ter o break
+        while True:  
             menu = input("""\n\nCAIXA ELETRÔNICO
 1- Depositar
 2- Sacar
@@ -30,11 +30,11 @@ digite a sua opção aqui:""")
 
 Selecione a opção que deseja realizar: """)
             if menu == '1':
-                transacoes.depositos( )
+                transacoes.depositos
             elif menu == '2':
-                transacoes.sacar( )
+                transacoes.sacar
             elif menu == '3':
-                transacoes.extratos( )
+                transacoes.extratos
             elif menu == '0':
                 break
             else:

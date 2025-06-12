@@ -1,6 +1,6 @@
 import cliente
 
-def buscar (cpf): 
+def buscar(cpf): 
   for usario in cliente.usuarios:
     if cliente ['cpf'] == cpf:
       return cliente
@@ -12,7 +12,7 @@ def saldo():
 def saldo_atualizado(deposito):
     cliente.usuario["saldo"]=cliente.usuario["saldo"]+deposito
 
-def excluir( ):
+def excluir():
     cpf = input("Cliente digite o seu CPF para prosseguir com a exclusão: ")
     user=buscar(cpf)
     if user is not None:
