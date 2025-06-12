@@ -5,8 +5,6 @@ sys.path.append(str(Path(__file__).parent))
 from utils.cliente import cadastrar_usuario, buscar_usuario, atualizar_usuario, excluir_usuario
 from utils.transacoes import depositar, sacar, exibir_extrato
 
-
-
 while True:
     print("\n======= MENU PRINCIPAL =======")
     print("1 - Cadastrar Usuário")
