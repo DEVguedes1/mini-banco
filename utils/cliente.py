@@ -36,7 +36,7 @@ def senha_aleatoria():
 
 def cadastro( ):
     while True:
-        user_name=input("digite seu nome:")
+        user_name=input("\ndigite seu nome:")
         senha_escolha=input("deseja ter uma senha aleatoria(s ou n)?").lower()
         if senha_escolha == 's':
             user_senha=senha_aleatoria
@@ -55,11 +55,11 @@ def cadastro( ):
                 validar_senha(user_senha)
                 if validar_senha(user_senha)==False:
                     print("""Senha inválida. Requisitos:
-    - Mínimo 8 caracteres                   
-    - Pelo menos 1 letra maiúscula              
-    - Pelo menos 1 letra minúscula              
-    - Pelo menos 1 número     
-    - Pelo menos 1 caractere especial (@$!%*?&)""")
+- Mínimo 8 caracteres                   
+- Pelo menos 1 letra maiúscula              
+- Pelo menos 1 letra minúscula              
+- Pelo menos 1 número     
+- Pelo menos 1 caractere especial (@$!%*?&)""")
                 else:
                     break
                 

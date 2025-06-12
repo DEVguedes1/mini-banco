@@ -2,32 +2,31 @@ from utils import cliente
 
 while True:
     print("=================MENU==================")
-    try:
-        opcao=int(input("""
-1- CADASTRO
-2- BUSCAR USUARIO
-3- SAIR
-digite a sua opção aqui:"""))
     
-        if opcao == '1':
-            cliente.cadastro ( )
-        elif opcao == '2':
-            cliente.buscar_user( )
-        elif opcao == '3':
-            # atualizar ( )
-            cliente
-        elif opcao == '4':
-            # excluir ( )
-            cliente
-        elif opcao == '5':
-            print ('Encerrando  a sessão. . .'.upper())
-            break
-        else:
-            print ("Opção inválida, por favor tente novamente".upper())
-        print ('Sessão encerrada.'.upper())
-
-    except:
-        print("formato invalido")
+    opcao=input("""
+1- CADASTRO DE USUARIO
+2- BUSCAR USUARIO
+3- ATUALIZAR USUARIO
+4- EXCLUIR USUARIO
+5- SAIR 
+digite a sua opção aqui:""")
+    
+    if opcao == '1':
+        cliente.cadastro ( )
+    elif opcao == '2':
+        cliente.buscar_user( )
+    elif opcao == '3':
+        # atualizar ( )
+        cliente
+    elif opcao == '4':
+        # excluir ( )
+        cliente
+    elif opcao == '5':
+        print ('Encerrando  a sessão. . .'.upper())
+        break
+    else:
+        print ("Opção inválida, por favor tente novamente".upper())
+    print ('Sessão encerrada.'.upper())
         
         # match opcao:
             
