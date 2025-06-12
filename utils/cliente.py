@@ -1,94 +1,71 @@
-import string,random,re,conta
+import re
 
-contas={}
-usuario={}
-usuarios=[]
+usuarios = []
+contas = {}
 
 def validar_senha(senha):
     padrao = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
-    
-    if re.match(padrao, senha):
-        return True
-    else:
-        return False
-        
-def buscar_user(nome,cpf):
-    if len(usuarios) > 0:
-        for usuario in usuarios:
-            saldo = usuario [usuarios['cpf']]['saldo']
-            print(f"Nome: {usuarios['nome']},\nCPF: {usuarios['cpf']},\nEmail: {usuarios['email']},\nSaldo: R$ {saldo:.2f}")
-    else:
-        print ("Nenhum cliente cadastrado!!!!".upper())
+    return bool(re.match(padrao, senha))
 
 def validar_cpf(cpf):
-    cpf_valido=False
-    if len(cpf)==14:
-        usuario["cpf"]= cpf.replace('.','').replace('-','')
-        cpf_valido=True        
-        return cpf_valido
+    return len(cpf) == 14
 
-def senha_aleatoria():
-    random_senha = ''.join(random.choices(string.ascii_letters+string.digits+string.punctuation, k=8))
-    usuario["senha"]=random_senha
-    return random_senha
-    
-def cadastro( ):
-    while True:
-        user_name=input("\ndigite seu nome:")
-        
-        while True:
-            user_senha=input("digite sua senha:")
-            validar_senha(user_senha)
-            if validar_senha(user_senha)==False:
-                print("""Senha inválida. Requisitos:
-- Mínimo 8 caracteres                   
-- Pelo menos 1 letra maiúscula              
-- Pelo menos 1 letra minúscula              
-- Pelo menos 1 número     
-- Pelo menos 1 caractere especial (@$!%*?&)""")
-            else:
-                break
-            
-        user_email=input("digite seu email:")
-        while True:
-            user_cpf=input("digite seu cpf (ex:000.000.000-00):")
-            if validar_cpf(user_cpf)==True:
-                cadastro(user_name,user_senha,user_email,user_cpf)
-                break
-        continuar = input("Deseja cadastrar outro usuário? (s/n): ")
-        if continuar.lower() != 's':
-            break 
-    usuario = {
-        "nome": user_name,
-        "senha": user_senha,
-        "email": user_email
-    }
+def cadastrar_usuario():
+    nome = input("Nome: ")
+    email = input("Email: ")
+    cpf = input("CPF (000.000.000-00): ")
+
+    if not validar_cpf(cpf):
+        print("CPF inválido!")
+        return
+
+    senha = input("Senha: ")
+    if not validar_senha(senha):
+        print("Senha inválida!")
+        return
+
+    usuario = {"nome": nome, "email": email, "cpf": cpf, "senha": senha}
     usuarios.append(usuario)
-    contas[user_cpf] = {"saldo": 0}
+    contas[cpf] = {"saldo": 0.0, "extrato": []}
+    print("Usuário cadastrado com sucesso!")
 
-def atualizar ( ):
-  cpf = input ('Digite o CPF do cliente a ser atualizado: ')
-  usuario = conta.buscar(cpf)
-  if usuario is not None:
-    nome = input ("Digite seu nome: ")
-    email = input ("Digite seu email: ")
-    while True:
-            senha=input("digite sua senha:")
-            validar_senha(senha)
-            if validar_senha(senha)==False:
-                print("""Senha inválida. Requisitos:
-- Mínimo 8 caracteres                   
-- Pelo menos 1 letra maiúscula              
-- Pelo menos 1 letra minúscula              
-- Pelo menos 1 número     
-- Pelo menos 1 caractere especial (@$!%*?&)""")
+def buscar_usuario():
+    cpf = input("Digite o CPF para buscar: ")
+    for usuario in usuarios:
+        if usuario['cpf'] == cpf:
+            saldo = contas[cpf]['saldo']
+            print(f"Nome: {usuario['nome']}\nEmail: {usuario['email']}\nCPF: {cpf}\nSaldo: R$ {saldo:.2f}")
+            return
+    print("Usuário não encontrado.")
+
+def atualizar_usuario():
+    cpf = input("CPF do cliente: ")
+    for usuario in usuarios:
+        if usuario['cpf'] == cpf:
+            usuario['nome'] = input("Novo nome: ")
+            usuario['email'] = input("Novo email: ")
+            senha = input("Nova senha: ")
+            if validar_senha(senha):
+                usuario['senha'] = senha
+                print("Usuário atualizado com sucesso!")
             else:
-                break
+                print("Senha inválida.")
+            return
+    print("Usuário não encontrado.")
 
-    usuario ['nome'] = nome
-    usuario ['email'] = email
-    usuario ['senha'] = senha
+def excluir_usuario():
+    cpf = input("Digite o CPF: ")
+    for usuario in usuarios:
+        if usuario['cpf'] == cpf:
+            usuarios.remove(usuario)
+            contas.pop(cpf, None)
+            print("Usuário excluído com sucesso.")
+            return
+    print("Usuário não encontrado.")
 
-    print (f"Dados do cliente {cpf} atualizado com sucesso!".upper())
-  else:
-    print ('Cliente não encontrado!'.upper())
+def buscar_saldo(cpf):
+    return contas.get(cpf, {}).get('saldo', 0.0)
+
+def atualizar_saldo(cpf, valor):
+    if cpf in contas:
+        contas[cpf]['saldo'] += valor

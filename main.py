@@ -1,47 +1,50 @@
-from utils import cliente,conta,transacoes
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent))
+
+from utils.cliente import cadastrar_usuario, buscar_usuario, atualizar_usuario, excluir_usuario
+from utils.transacoes import depositar, sacar, exibir_extrato
+
+
 
 while True:
-    print("=================MENU==================")
-    
-    opcao=input("""
-1- CADASTRO DE USUARIO
-2- BUSCAR USUARIO
-3- ATUALIZAR USUARIO
-4- EXCLUIR USUARIO
-5- CAIXA ELETRONICO
-6- SAIR 
-digite a sua opção aqui:""")
-    
-    if opcao == '1':
-        cliente.cadastro
-    elif opcao == '2':
-        cliente.buscar_user
-    elif opcao == '3':
-        cliente.atualizar
-    elif opcao == '4':
-        conta.excluir
-    elif opcao == '5':
-        while True:  
-            menu = input("""\n\nCAIXA ELETRÔNICO
-1- Depositar
-2- Sacar
-3- Extrato
-0- Sair
+    print("\n======= MENU PRINCIPAL =======")
+    print("1 - Cadastrar Usuário")
+    print("2 - Buscar Usuário")
+    print("3 - Atualizar Usuário")
+    print("4 - Excluir Usuário")
+    print("5 - Caixa Eletrônico")
+    print("6 - Sair")
+    opcao = input("Escolha uma opção: ")
 
-Selecione a opção que deseja realizar: """)
+    if opcao == '1':
+        cadastrar_usuario()
+    elif opcao == '2':
+        buscar_usuario()
+    elif opcao == '3':
+        atualizar_usuario()
+    elif opcao == '4':
+        excluir_usuario()
+    elif opcao == '5':
+        while True:
+            print("\n=== CAIXA ELETRÔNICO ===")
+            print("1 - Depositar")
+            print("2 - Sacar")
+            print("3 - Extrato")
+            print("0 - Voltar")
+            menu = input("Escolha: ")
             if menu == '1':
-                transacoes.depositos
+                depositar()
             elif menu == '2':
-                transacoes.sacar
+                sacar()
             elif menu == '3':
-                transacoes.extratos
+                exibir_extrato()
             elif menu == '0':
                 break
             else:
-                print("Número selecionado inválido. Tente novamente")   
+                print("Opção inválida.")
     elif opcao == '6':
-        print('Encerrando  a sessão. . .'.upper())
+        print("Encerrando...")
         break
     else:
-        print("Opção inválida, por favor tente novamente".upper())
-    print('Sessão encerrada.'.upper())
+        print("Opção inválida!")
